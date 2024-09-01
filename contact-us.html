@@ -611,84 +611,72 @@
 					</div>
 					<div class="bee-block bee-block-3 bee-form">
 						<form accept-charset="UTF-8" action="https://script.google.com/macros/s/AKfycbxU4_2yRGi6R3hxdG6WtGWkoSLy2lBWoKEZfJrJq_p9r93Ya5ZT9njfIWS-rW9avkKn/exec" 
-						autocomplete="on" enctype="multipart/form-data" method="post" target="_self" id="myForm">
-					  <div class="bee-form-row">
-						  <div class="bee-field bee-field-r3c0m2i1">
-							  <label for="r3c0m2i1">First Name</label>
-							  <input id="r3c0m2i1" name="First-Name" required="" type="text" />
-						  </div>
-					  </div>
-					  <div class="bee-form-row">
-						  <div class="bee-field bee-field-r3c0m2i2">
-							  <label for="r3c0m2i2">Last Name</label>
-							  <input id="r3c0m2i2" name="Last-Name" required="" type="text" />
-						  </div>
-					  </div>
-					  <div class="bee-form-row">
-						  <div class="bee-field bee-field-r3c0m2i3">
-							  <label for="r3c0m2i3">Email</label>
-							  <input id="r3c0m2i3" name="Email" required="" type="email" />
-						  </div>
-					  </div>
-					  <div class="bee-form-row">
-						  <div class="bee-field bee-field-r3c0m2i7">
-							  <label for="r3c0m2i7">Message</label>
-							  <textarea id="r3c0m2i7" name="Message"></textarea>
-						  </div>
-					  </div>
-					  <div class="bee-form-row">
-						  <div class="bee-field bee-field-r3c0m2i11">
-							  <div class="bee-button-container">
-								  <button id="r3c0m2i11" name="submit" type="submit" value="Submit">Submit</button>
-							  </div>
-						  </div>
-					  </div>
-				  </form>
-				  
-				  <div id="loadingIcon" style="display:none;">
-					  <img src="images/Loading_Icon.gif" alt="Loading..." />
-				  </div>
-				  
-				  <div id="thankYouMessage" style="display:none;">
-					  <p>Thank you for your submission!</p>
-				  </div>
-				  
-				  <script>
-					  document.getElementById('myForm').onsubmit = function(event) {
-						  event.preventDefault(); // Prevent the default form submission
-				  
-						  // Show the loading icon
-						  document.getElementById('loadingIcon').style.display = 'block';
-				  
-						  var formData = new FormData(this); // Get form data
-						  
-						  this.reset(); // Reset the form fields
-				  
-						  fetch(this.action, {
-							  method: this.method,
-							  body: formData,
-						  })
-						  .then(response => response.json()) // Parse the JSON from the response
-						  .then(data => {
-							  // Handle the JSON response if needed
-							  console.log(data);
-				  
-							  // Hide the loading icon
-							  document.getElementById('loadingIcon').style.display = 'none';
-				  
-							  // Show the thank you message
-							  document.getElementById('thankYouMessage').style.display = 'block';
-						  })
-						  .catch(error => {
-							  console.error('Error:', error);
-							  alert('There was a problem with your submission. Please try again.');
-				  
-							  // Hide the loading icon in case of an error
-							  document.getElementById('loadingIcon').style.display = 'none';
-						  });
-					  };
-				  </script>
-				  
+      autocomplete="on" enctype="multipart/form-data" method="post" target="_self" id="myForm">
+    <div class="bee-form-row">
+        <div class="bee-field bee-field-r3c0m2i1">
+            <label for="r3c0m2i1">First Name</label>
+            <input id="r3c0m2i1" name="First-Name" required="" type="text" />
+        </div>
+    </div>
+    <div class="bee-form-row">
+        <div class="bee-field bee-field-r3c0m2i2">
+            <label for="r3c0m2i2">Last Name</label>
+            <input id="r3c0m2i2" name="Last-Name" required="" type="text" />
+        </div>
+    </div>
+    <div class="bee-form-row">
+        <div class="bee-field bee-field-r3c0m2i3">
+            <label for="r3c0m2i3">Email</label>
+            <input id="r3c0m2i3" name="Email" required="" type="email" />
+        </div>
+    </div>
+    <div class="bee-form-row">
+        <div class="bee-field bee-field-r3c0m2i7">
+            <label for="r3c0m2i7">Message</label>
+            <textarea id="r3c0m2i7" name="Message"></textarea>
+        </div>
+    </div>
+    <div class="bee-form-row">
+        <div class="bee-field bee-field-r3c0m2i11">
+            <div class="bee-button-container">
+                <button id="r3c0m2i11" name="submit" type="submit" value="Submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div id="thankYouMessage" style="display:none;">
+    <p>Thank you for your submission!</p>
+</div>
+
+<script>
+    document.getElementById('myForm').onsubmit = function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this); // Get form data
+		
+		this.reset();
+
+        fetch(this.action, {
+            method: this.method,
+            body: formData,
+        })
+        .then(response => response.json()) // Parse the JSON from the response
+        .then(data => {
+            // Handle the JSON response if needed
+            console.log(data);
+
+            // Show the thank you message
+            document.getElementById('thankYouMessage').style.display = 'block';
+
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was a problem with your submission. Please try again.');
+        });
+    };
+</script>
 
 					</div>
 					<div class="bee-block bee-block-4 bee-spacer">
