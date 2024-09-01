@@ -610,6 +610,8 @@
 						<h2 style="color:#000000;direction:ltr;font-family:'Roboto', Tahoma, Verdana, Segoe, sans-serif;font-size:30px;font-weight:700;letter-spacing:normal;line-height:120%;text-align:left;margin-top:0;margin-bottom:0;"><span class="tinyMce-placeholder">                                                 Feel free to reach us</span> </h2>
 					</div>
 					<div class="bee-block bee-block-3 bee-form">
+	
+					
 						<form accept-charset="UTF-8" action="https://script.google.com/macros/s/AKfycbxU4_2yRGi6R3hxdG6WtGWkoSLy2lBWoKEZfJrJq_p9r93Ya5ZT9njfIWS-rW9avkKn/exec" 
       autocomplete="on" enctype="multipart/form-data" method="post" target="_self" id="myForm">
     <div class="bee-form-row">
@@ -645,6 +647,10 @@
     </div>
 </form>
 
+<div id="loadingIcon" style="display:none;">
+    <img src="loading-icon.gif" alt="Loading..." />
+</div>
+
 <div id="thankYouMessage" style="display:none;">
     <p>Thank you for your submission!</p>
 </div>
@@ -653,9 +659,12 @@
     document.getElementById('myForm').onsubmit = function(event) {
         event.preventDefault(); // Prevent the default form submission
 
+        // Show the loading icon
+        document.getElementById('loadingIcon').style.display = 'block';
+
         var formData = new FormData(this); // Get form data
 		
-		this.reset();
+        this.reset(); // Reset the form fields
 
         fetch(this.action, {
             method: this.method,
@@ -666,17 +675,22 @@
             // Handle the JSON response if needed
             console.log(data);
 
+            // Hide the loading icon
+            document.getElementById('loadingIcon').style.display = 'none';
+
             // Show the thank you message
             document.getElementById('thankYouMessage').style.display = 'block';
-
-            
         })
         .catch(error => {
             console.error('Error:', error);
             alert('There was a problem with your submission. Please try again.');
+
+            // Hide the loading icon in case of an error
+            document.getElementById('loadingIcon').style.display = 'none';
         });
     };
 </script>
+
 
 					</div>
 					<div class="bee-block bee-block-4 bee-spacer">
